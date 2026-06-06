@@ -94,7 +94,10 @@ const router = createBrowserRouter([
         {
           path: "update-menu/:id",
           element: <UpdateMenu/>,
-          loader: ({params}) => fetch(`http://localhost:6001/menu/${params.id}`)
+          loader: ({params}) => {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:6001';
+            return fetch(`${API_URL}/menu/${params.id}`)
+          }
         }
       ]
     }
