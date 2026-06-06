@@ -1,17 +1,18 @@
 const express = require("express");
-const app = express();
 const cors = require("cors");
-const port = process.env.PORT || 6001;
 const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
+
+const app = express();
 
 // CORS Configuration for Vercel
 const corsOptions = {
   origin: [
     'http://localhost:5173',
     'http://localhost:3000',
-    'https://*.vercel.app'
+    'https://*.vercel.app',
+    '*'
   ],
   credentials: true,
   optionsSuccessStatus: 200,
@@ -42,28 +43,26 @@ app.post('/jwt', async (req, res) => {
   res.send({ token });
 })
 
-
 //   import routes here
-const menuRoutes = require('./api/routes/menuRoutes');
-const cartRoutes = require('./api/routes/cartRoutes');
-const userRoutes = require('./api/routes/userRoutes')
+const menuRoutes = require('./routes/menuRoutes');
+const cartRoutes = require('./routes/cartRoutes');
+const userRoutes = require('./routes/userRoutes')
 app.use('/menu', menuRoutes)
 app.use('/carts', cartRoutes);
 app.use('/users', userRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({
-    message: "Hello Foodi Client Server!",
+    message: "Hello Foodi Client Server! 🎉",
     status: "Server is running successfully ✅",
-    api: "Ready to accept requests"
+    api: "Ready to accept requests",
+    timestamp: new Date().toISOString()
   });
 });
 
-// For Vercel serverless
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-  });
-}
+// Health check endpoint for Vercel
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "healthy" });
+});
 
 module.exports = app;
