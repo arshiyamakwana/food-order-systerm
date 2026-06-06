@@ -20,87 +20,96 @@ import ContUs from "../pages/menuPage/ContUs";
 import Orderonline from "../pages/menuPage/Orderonline";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main/>,
-      children: [
-        {
-            path: "/",
-            element: <Home/>
-        },
-        {
-          path: "/menu",
-          element: <Menu/>
-        },
-        {
-          path: "/ContUs",
-          element: <ContUs/>
-        },
-        {
-          path: "/oust",
-          element: <Ourstory/>
-        },
-        {
-          path: "/orderon",
-          element: <Orderonline/>
-        },
-        
-        {
-          path: "/order",
-          element:<PrivateRoute><Order/></PrivateRoute>
-        },
-        {
-          path: "/update-profile",
-          element: <UserProfile/>
-        },
-        {
-          path:"/process-checkout",
-          element:<Payment/>
-        },
-        {
-          path: "/cart-page",
-          element: <CartPage/>
-        }
-      ]
-    },
-    {
-      path: "/signup",
-      element: <Signup/>
-    },
-    {
-      path: "/login",
-      element: <Login/>
-    },
-    {
-      path: 'dashboard',
-      element: <PrivateRoute><DashboardLayout/></PrivateRoute>,
-      children: [
-        {
-          path: '',
-          element: <Dashboard/>
-        },
-        {
-          path: 'users', 
-          element: <Users/>
-        },
-        {
-          path: 'add-menu',
-          element: <AddMenu/>
-        }, 
-        {
-          path: "manage-items",
-          element: <ManageItems/>
-        },
-        {
-          path: "update-menu/:id",
-          element: <UpdateMenu/>,
-          loader: ({params}) => {
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:6001';
-            return fetch(`${API_URL}/menu/${params.id}`)
-          }
-        }
-      ]
-    }
-  ]);
+  {
+    path: "/",
+    element: <Main />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/menu",
+        element: <Menu />,
+      },
+      {
+        path: "/ContUs",
+        element: <ContUs />,
+      },
+      {
+        path: "/oust",
+        element: <Ourstory />,
+      },
+      {
+        path: "/orderon",
+        element: <Orderonline />,
+      },
 
-  export default router;
+      {
+        path: "/order",
+        element: (
+          <PrivateRoute>
+            <Order />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-profile",
+        element: <UserProfile />,
+      },
+      {
+        path: "/process-checkout",
+        element: <Payment />,
+      },
+      {
+        path: "/cart-page",
+        element: <CartPage />,
+      },
+    ],
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "",
+        element: <Dashboard />,
+      },
+      {
+        path: "users",
+        element: <Users />,
+      },
+      {
+        path: "add-menu",
+        element: <AddMenu />,
+      },
+      {
+        path: "manage-items",
+        element: <ManageItems />,
+      },
+      {
+        path: "update-menu/:id",
+        element: <UpdateMenu />,
+        loader: ({ params }) => {
+          const API_URL =
+            import.meta.env.VITE_API_URL || "http://localhost:6001";
+          return fetch(`${API_URL}/menu/${params.id}`);
+        },
+      },
+    ],
+  },
+]);
+
+export default router;
