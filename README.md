@@ -1,4 +1,4 @@
-<img width="1829" height="1019" alt="Screenshot 2024-03-01 192335" src="https://github.com/user-attachments/assets/9386d45c-f533-45a7-b9d4-812b3a6af1cb" /># Foodi - Food Ordering Application
+# Foodi - Food Ordering Application
 
 A full-stack food ordering web application built with React, Node.js, and MongoDB. Users can browse menu items, add them to cart, checkout, and place orders with secure payment processing.
 
