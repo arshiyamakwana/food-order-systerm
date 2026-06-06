@@ -1,5 +1,5 @@
-for client -cd foodi-client
+foodi-client
               npm run dev 
-for server-cd foodi-server
+for server foodi-server
 	       npm start
 
