@@ -1,0 +1,5 @@
+for client -cd foodi-client
+              npm run dev 
+for server-cd foodi-server
+	       npm start
+C:\Users\arshi\Desktop\myproject\sem6> npm start   
